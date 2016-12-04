@@ -16,3 +16,5 @@
 //= require_tree .
 //= require moment
 //= require bootstrap-datetimepicker
+//plugin bootstrap minus and plus
+//http://jsfiddle.net/laelitenetwork/puJ6G/

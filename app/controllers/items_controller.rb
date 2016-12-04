@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+
+
   def index
     @items = Item.all
 
@@ -43,6 +45,7 @@ class ItemsController < ApplicationController
     @item.user_id = params[:user_id]
     @item.event_id = params[:event_id]
     @item.price = params[:price]
+    @item.quantity = params[:quantity]
 
     save_status = @item.save
 
@@ -67,6 +70,7 @@ class ItemsController < ApplicationController
     @item.user_id = params[:user_id]
     @item.event_id = params[:event_id]
     @item.price = params[:price]
+    @item.quantity = params[:quantity]
 
     save_status = @item.save
 
@@ -88,4 +92,6 @@ class ItemsController < ApplicationController
       redirect_to(:back, :notice => "Item deleted.")
     end
   end
+
+
 end

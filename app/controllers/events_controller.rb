@@ -9,6 +9,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @item= Item.new
 
+
     render("events/show.html.erb")
   end
 

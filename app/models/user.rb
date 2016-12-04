@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
    has_many :items
    has_many :events
+   has_many :counts
 
 
    # Validations

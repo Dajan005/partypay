@@ -26,12 +26,15 @@ Rails.application.routes.draw do
   get "/items", :controller => "items", :action => "index"
   get "/items/:id", :controller => "items", :action => "show"
 
+
   # UPDATE
   get "/items/:id/edit", :controller => "items", :action => "edit"
   post "/update_item/:id", :controller => "items", :action => "update"
+    get "/update_item/:id", :controller => "items", :action => "update"
 
   # DELETE
   get "/delete_item/:id", :controller => "items", :action => "destroy"
+
   #------------------------------
 
   # Routes for the Event resource:
