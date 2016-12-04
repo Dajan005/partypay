@@ -35,6 +35,24 @@ class ItemsController < ApplicationController
     end
   end
 
+  def instantcreate
+    @item = Item.new
+
+    @item.name = params[:name]
+    @item.description = params[:description]
+    @item.user_id = params[:user_id]
+    @item.event_id = params[:event_id]
+    @item.price = params[:price]
+
+    save_status = @item.save
+
+    if save_status == true
+      redirect_to("/events/#{@item.event_id}", :notice => "Item created successfully.")
+    else
+      render("items/new.html.erb")
+    end
+  end
+
   def edit
     @item = Item.find(params[:id])
 

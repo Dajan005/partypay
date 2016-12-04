@@ -46,12 +46,11 @@
       </div>
 
       <!-- Label and input for date -->
-      <div class="form-group">
-        <label for="date" class="control-label">
-          Date
-        </label>
-
-        <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @event.date %>">
+      <div class='input-group date' id='datetimepicker1'>
+        <input type='text' class="form-control" name="date" id="date" value="<%= @event.date %>">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
       </div>
 
       <!-- Label and input for receipt -->
@@ -75,3 +74,10 @@
     </form>
   </div>
 </div>
+
+
+<script type="text/javascript">
+          $(function () {
+              $('#datetimepicker1').datetimepicker();
+          });
+      </script>
