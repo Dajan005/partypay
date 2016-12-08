@@ -1,21 +1,4 @@
 Rails.application.routes.draw do
-  # Routes for the Count resource:
-  # CREATE
-  get "/counts/new", :controller => "counts", :action => "new"
-  post "/create_count", :controller => "counts", :action => "create"
-
-  # READ
-  get "/counts", :controller => "counts", :action => "index"
-  get "/counts/:id", :controller => "counts", :action => "show"
-
-  # UPDATE
-  get "/counts/:id/edit", :controller => "counts", :action => "edit"
-  post "/update_count/:id", :controller => "counts", :action => "update"
-
-  # DELETE
-  get "/delete_count/:id", :controller => "counts", :action => "destroy"
-  #------------------------------
-
   # Routes for the Item resource:
   # CREATE
   get "/items/new", :controller => "items", :action => "new"
