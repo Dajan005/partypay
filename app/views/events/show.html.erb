@@ -46,7 +46,7 @@
                <td> <%= item.quantity %></td>
                <td><%= number_to_currency(item.price * item.quantity) %> </td>
                <td> <% if current_user==item.user %>
-                 <a href="https://venmo.com/<%=@event.user.Venmo%>?txn=pay&amount=<%=item.price*item.quantity%>note=for+<%=item.name%>"> <img src="http://brand.venmo.com/img/logo-mark.png" width="50"> </a></td>
+                 <a href="https://venmo.com/<%=@event.user.Venmo%>?txn=pay&amount=<%=item.price*item.quantity%>&note=for+<%=item.name%>+@+<%=item.event.location%>"> <img src="http://brand.venmo.com/img/logo-mark.png" width="50"> </a></td>
                   <%else%>
                <%end%>
 
