@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161204210356) do
+ActiveRecord::Schema.define(version: 20161209164836) do
 
   create_table "counts", force: :cascade do |t|
     t.integer  "user_id"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20161204210356) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.string   "neighborhood"
+    t.decimal  "lat"
+    t.decimal  "long"
   end
 
   create_table "items", force: :cascade do |t|

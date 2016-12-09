@@ -18,9 +18,10 @@
       <% @events.each do |event| %>
       <tr>
         <td><img  src="<%=event.receipt%>"  height= "150px"></td>
-        <td><%= event.title %></td>
+        <td><a href="/events/<%= event.id %>"><%= event.title %>    </a> </td>
           <td><%= event.location %></td>
               <td><%= event.date %></td>
+
       </tr>
       <% end %>
     </table>

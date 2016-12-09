@@ -1,3 +1,8 @@
+
+require 'open-uri'
+require 'json'
+
+
 class EventsController < ApplicationController
   def index
     @events = Event.all
@@ -8,6 +13,12 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @item= Item.new
+
+    if @event.location != ""
+
+              @lat=@event.lat
+              @long=@event.long
+            end
 
 
     render("events/show.html.erb")
@@ -24,6 +35,45 @@ class EventsController < ApplicationController
 
     @event.title = params[:title]
     @event.location = params[:location]
+
+
+    if @event.location != ""
+          @street_address_without_spaces = URI.encode(@event.location)
+
+            url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{@street_address_without_spaces}"
+
+            raw_data = open(url).read
+            parsed_data = JSON.parse(raw_data)
+                  @results = parsed_data["results"]
+
+        if  parsed_data["results"][0]["address_components"][0]["long_name"].to_s + " " +parsed_data["results"][0]["address_components"][1].to_s
+          @event.street = parsed_data["results"][0]["address_components"][0]["long_name"] + " " +parsed_data["results"][0]["address_components"][1]["long_name"]
+        end
+
+        if parsed_data["results"][0]["address_components"][3]
+        @event.city = parsed_data["results"][0]["address_components"][3]["long_name"]
+      end
+
+      if parsed_data["results"][0]["address_components"][5]
+        @event.state = parsed_data["results"][0]["address_components"][5]["long_name"]
+      end
+
+        if parsed_data["results"][0]["address_components"][7]
+        @event.zip = parsed_data["results"][0]["address_components"][7]["long_name"]
+      end
+
+      if parsed_data["results"][0]["address_components"][2]
+        @event.neighborhood = parsed_data["results"][0]["address_components"][2]["long_name"]
+    end
+
+          @event.lat = parsed_data["results"][0]["geometry"]["location"]["lat"]
+
+
+          @event.long = parsed_data["results"][0]["geometry"]["location"]["lng"]
+
+
+        end
+
     @event.description = params[:description]
     @event.date = params[:date]
     @event.receipt = params[:receipt]
@@ -49,6 +99,44 @@ class EventsController < ApplicationController
 
     @event.title = params[:title]
     @event.location = params[:location]
+
+    if @event.location != ""
+          @street_address_without_spaces = URI.encode(@event.location)
+
+            url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{@street_address_without_spaces}"
+
+            raw_data = open(url).read
+            parsed_data = JSON.parse(raw_data)
+                  @results = parsed_data["results"]
+
+        if  parsed_data["results"][0]["address_components"][0]["long_name"].to_s + " " +parsed_data["results"][0]["address_components"][1].to_s
+          @event.street = parsed_data["results"][0]["address_components"][0]["long_name"] + " " +parsed_data["results"][0]["address_components"][1]["long_name"]
+        end
+
+        if parsed_data["results"][0]["address_components"][3]
+        @event.city = parsed_data["results"][0]["address_components"][3]["long_name"]
+      end
+
+      if parsed_data["results"][0]["address_components"][5]
+        @event.state = parsed_data["results"][0]["address_components"][5]["long_name"]
+      end
+
+        if parsed_data["results"][0]["address_components"][7]
+        @event.zip = parsed_data["results"][0]["address_components"][7]["long_name"]
+      end
+
+      if parsed_data["results"][0]["address_components"][2]
+        @event.neighborhood = parsed_data["results"][0]["address_components"][2]["long_name"]
+    end
+
+          @event.lat = parsed_data["results"][0]["geometry"]["location"]["lat"]
+
+
+          @event.long = parsed_data["results"][0]["geometry"]["location"]["lng"]
+
+
+        end
+
     @event.description = params[:description]
     @event.date = params[:date]
     @event.receipt = params[:receipt]
